@@ -1,0 +1,6 @@
+1import pandas as pd 2import csv 3for i in range(1,178):
+  # 爬取全部页 4 tb = pd.read_htm
+  l('http://s.askci.com/stock/a/?repo
+  rtTime=2017-12-31&pageNum=%s' % (str(i)))[3] 5 tb.to_csv(r'1.csv', m
+  ode='a', encoding='utf_8_sig',
+  header=1, index=0)
