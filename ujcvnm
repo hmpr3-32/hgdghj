@@ -1,0 +1,14 @@
+6import pymysql
+ 7from sqlalchemy import create_engine
+ 8from urllib.parse import urlencode  # 编码 URL 字符串
+ 9
+10start_time = time.time()  #计算程序运行时间
+11def get_one_page(i):
+12    try:
+13        headers = {
+14            'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36'
+15        }
+16        paras = {
+17        'reportTime': '2017-12-31',
+18        #可以改报告日期，比如2018-6-30获得的就是该季度的信息
+19        'pageNum': i   #页
