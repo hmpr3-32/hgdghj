@@ -1,0 +1,15 @@
+return None
+26    except RequestException:
+27        print('爬取失败')
+28
+29def parse_one_page(html):
+30    soup = BeautifulSoup(html,'lxml')
+31    content = soup.select('#myTable04')[0] #[0]将返回的list改为bs4类型
+32    tbl = pd.read_html(content.prettify(),header = 0)[0]
+33    # prettify()优化代码,[0]从pd.read_html返回的list中提取出DataFrame
+34    tbl.rename(columns = {'序号':'serial_number', '股票代码':'stock_code', '股票简称':'stock_abbre', '公司名称':'company_name', '省份':'province', '城市':'city', '主营业务收入(201712)':'main_bussiness_income', '净利润(201712)':'net_profit', '员工人数':'employees', '上市日期':'listing_date', '招股书':'zhaogushu', '公司财报':'financial_report', '行业分类':'industry_classification', '产品类型':'industry_type', '主营业务':'main_business'},inplace = True)
+35    return tbl
+36
+37def generate_mysql():
+38    conn = pymysql.connect(
+39        host='localhost',
